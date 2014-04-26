@@ -21,6 +21,7 @@
     __weak IBOutlet UITextView *txtSuggets;
     
     
+    __weak IBOutlet UIImageView *imgBG;
     prod *prd1;
     prod *prd2;
     prod *prd3;
@@ -33,6 +34,7 @@
 
 - (IBAction)cmdDownloadUserDetails:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *lblHHID;
+@property (weak, nonatomic) IBOutlet UILabel *lblLastVisit;
 
 @property (nonatomic, retain) NSArray *responseArray;
 @property (weak, nonatomic) IBOutlet UIView *vueOverlay;

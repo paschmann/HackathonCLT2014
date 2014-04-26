@@ -18,6 +18,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    CGRect frame = _vueOverlay.frame;
+    frame.origin.y=54;//pass the cordinate which you want
+    frame.origin.x= 234;//pass the cordinate which you want
+    _vueOverlay.frame= frame;
+    
+    
     [Utility createAndCheckDatabase];
     arrSuggests = [[NSMutableArray alloc] init];
     db = [FMDatabase databaseWithPath:[Utility getDBPath]];
@@ -71,66 +77,13 @@
             
             NSArray *row = [[_responseArray objectAtIndex:i] componentsSeparatedByString:@"|"];
             if (![[row objectAtIndex:0] isEqualToString:@"HHID"] && ![[row objectAtIndex:1] isEqualToString:@"0"]){
-                    /*
-                    prd = [[prod alloc] init];
-                    prd.prodname.text = [row objectAtIndex:1];
-                    prd.strProdName = [row objectAtIndex:1];
-                
-                    prd.view.tag = systemNo;
-                    prd.view.frame = CGRectMake(0, ySysLoc, 400, 60);
-                    ySysLoc = ySysLoc + 60;
-                    scrSuggest.contentSize = CGSizeMake(1000, 1000);
-                    prd.view.backgroundColor = [UIColor lightGrayColor];
-                    
-                    [arrSuggests insertObject:prd atIndex:systemNo];
-                    
-                    [scrSuggest addSubview: 
-                     
-                     */
-                if (systemNo == 1){
-                    prd1.prodname.text = [row objectAtIndex:1];
-                    prd1.desc.text = [row objectAtIndex:2];
-                    prd1.lastpurch.text = [row objectAtIndex:5];
-                    prd1.qty.text = [row objectAtIndex:3];
-                } else if (systemNo == 2){
-                    prd2.prodname.text = [row objectAtIndex:1];
-                    prd2.desc.text = [row objectAtIndex:2];
-                    prd2.lastpurch.text = [row objectAtIndex:5];
-                    prd2.qty.text = [row objectAtIndex:3];
-                }
-                else if (systemNo == 3){
-                    prd3.prodname.text = [row objectAtIndex:1];
-                    prd3.desc.text = [row objectAtIndex:2];
-                    prd3.lastpurch.text = [row objectAtIndex:5];
-                    prd3.qty.text = [row objectAtIndex:3];
-                }
-                else if (systemNo == 4){
-                    prd4.prodname.text = [row objectAtIndex:1];
-                    prd4.desc.text = [row objectAtIndex:2];
-                    prd4.lastpurch.text = [row objectAtIndex:5];
-                    prd4.qty.text = [row objectAtIndex:3];
-                }else if (systemNo == 5){
-                    prd5.prodname.text = [row objectAtIndex:1];
-                    prd5.desc.text = [row objectAtIndex:2];
-                    prd5.lastpurch.text = [row objectAtIndex:5];
-                    prd5.qty.text = [row objectAtIndex:3];
-                }
-                else if (systemNo == 6){
-                    prd6.prodname.text = [row objectAtIndex:1];
-                    prd6.desc.text = [row objectAtIndex:2];
-                    prd6.lastpurch.text = [row objectAtIndex:5];
-                    prd6.qty.text = [row objectAtIndex:3];
-                }
-                
-                    systemNo++;
-                
-                    
                 NSString *strQuery = [NSString stringWithFormat:@"INSERT INTO data (HHID, UPC, DESC, FREQ, LAST_PURCH, COUPON_USED, EXPRESS_LANE) values ('%@', '%@', '%@', '%@', '%@', '%@', '%@')", [row objectAtIndex:0], [row objectAtIndex:1], [row objectAtIndex:2],[row objectAtIndex:3], [row objectAtIndex:5], [row objectAtIndex:4], [row objectAtIndex:6]];
                 success =  [db executeUpdate: strQuery];
                 _lblHHID.text = [row objectAtIndex:0];
             }
         }
         
+        [self getLatestShop];
         NSLog(@"%@", string);
         NSLog(@"Download Complete");
         [_vueOverlay setHidden:TRUE];
@@ -142,12 +95,31 @@
     [networkQueue addOperation:operation];
 }
 
+- (void) getLatestShop{
+    NSString *strQuery = @"SELECT max(last_punch) FROM data";
+    [db open];
+    FMResultSet *results;
+    results = [db executeQuery:strQuery];
+    
+    NSString *table = @"";
+    
+    while([results next]) {
+        _lblLastVisit.text = [NSString stringWithFormat:@"Last Visit: %@", [results stringForColumn:@"Last_purch"]];
+    }
+    
+    NSLog(@"%@", db.lastError);
+}
+
 - (IBAction)cmdDownloadSally:(id)sender {
+    //Sally
     [self getUserInfo2: @"http://slave02.hackathonclt.org:8889/sallysales"];
+    imgBG.image = [UIImage imageNamed:@"bgSally.png"];
 }
 
 - (IBAction)cmdDownloadUserDetails:(id)sender {
+    //Steven
     [self getUserInfo2: @"http://slave02.hackathonclt.org:8889/stevensales"];
+    imgBG.image = [UIImage imageNamed:@"bg.png"];
 }
 
 - (void) loadSuggestions{
@@ -163,24 +135,45 @@
     NSString *table = @"";
     
     while([results next]) {
-        
-        prd = [[prod alloc] init];
         prd.prodname.text = [results stringForColumn:@"UPC"];
-        prd.strProdName = [results stringForColumn:@"UPC"];
         
-        prd.txtTest.text = @"TEST!";
+        if (systemNo == 1){
+            prd1.prodname.text = [results stringForColumn:@"UPC"];
+            prd1.desc.text = [results stringForColumn:@"DESC"];
+            prd1.lastpurch.text = [results stringForColumn:@"LAST_PURCH"];
+            prd1.qty.text = [results stringForColumn:@"FREQ"];
+        } else if (systemNo == 2){
+            prd2.prodname.text = [results stringForColumn:@"UPC"];
+            prd2.desc.text = [results stringForColumn:@"DESC"];
+            prd2.lastpurch.text = [results stringForColumn:@"LAST_PURCH"];
+            prd2.qty.text = [results stringForColumn:@"FREQ"];        }
+        else if (systemNo == 3){
+            prd3.prodname.text = [results stringForColumn:@"UPC"];
+            prd3.desc.text = [results stringForColumn:@"DESC"];
+            prd3.lastpurch.text = [results stringForColumn:@"LAST_PURCH"];
+            prd3.qty.text = [results stringForColumn:@"FREQ"];
+        }
+        else if (systemNo == 4){
+            prd4.prodname.text = [results stringForColumn:@"UPC"];
+            prd4.desc.text = [results stringForColumn:@"DESC"];
+            prd4.lastpurch.text = [results stringForColumn:@"LAST_PURCH"];
+            prd4.qty.text = [results stringForColumn:@"FREQ"];
+        }else if (systemNo == 5){
+            prd5.prodname.text = [results stringForColumn:@"UPC"];
+            prd5.desc.text = [results stringForColumn:@"DESC"];
+            prd5.lastpurch.text = [results stringForColumn:@"LAST_PURCH"];
+            prd5.qty.text = [results stringForColumn:@"FREQ"];
+        }
+        else if (systemNo == 6){
+            prd6.prodname.text = [results stringForColumn:@"UPC"];
+            prd6.desc.text = [results stringForColumn:@"DESC"];
+            prd6.lastpurch.text = [results stringForColumn:@"LAST_PURCH"];
+            prd6.qty.text = [results stringForColumn:@"FREQ"];
+        }
         
-        prd.view.tag = systemNo;
-        prd.view.frame = CGRectMake(0, ySysLoc, 400, 60);
-        ySysLoc = ySysLoc + 65;
-        scrSuggest.contentSize = CGSizeMake(400, ySysLoc);
-        prd.view.backgroundColor = [UIColor lightGrayColor];
-        
-        [arrSuggests insertObject:prd atIndex:systemNo];
-        
-        [scrSuggest addSubview: prd.view];
         systemNo++;
-        prd.prodname.text = @"TEST";
+
+        
     }
     [db close];
 
