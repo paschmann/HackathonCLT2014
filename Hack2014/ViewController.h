@@ -7,7 +7,34 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AFNetworking.h"
+#import "FMResultSet.h"
+#import "FMDatabase.h"
+#import "Utility.h"
+#import "prod.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController{
+    FMDatabase *db;
+    prod *prd;
+    __weak IBOutlet UIScrollView *scrSuggest;
+    NSMutableArray *arrSuggests;
+    __weak IBOutlet UITextView *txtSuggets;
+    
+    
+    prod *prd1;
+    prod *prd2;
+    prod *prd3;
+    prod *prd4;
+    prod *prd5;
+    prod *prd6;
+}
+
+- (IBAction)cmdDownloadSally:(id)sender;
+
+- (IBAction)cmdDownloadUserDetails:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *lblHHID;
+
+@property (nonatomic, retain) NSArray *responseArray;
+@property (weak, nonatomic) IBOutlet UIView *vueOverlay;
 
 @end
