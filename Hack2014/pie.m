@@ -1,21 +1,23 @@
 //
-//  chart.m
+//  pie.m
 //  Hack2014
-//  Class handles the simple chart view
+// Class handles the pie view, (not completed)
 //  Created by Paul Aschmann on 4/26/14.
 //  Copyright (c) 2014 Lithium Labs. All rights reserved.
 //
 
-#import "chart.h"
+
+#import "pie.h"
 #import "Utility.h"
 
 #define Rgb2UIColor(r, g, b)  [UIColor colorWithRed:((r) / 255.0) green:((g) / 255.0) blue:((b) / 255.0) alpha:1.0]
 
-@interface chart ()
+
+@interface pie ()
 
 @end
 
-@implementation chart
+@implementation pie
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -67,7 +69,7 @@
 - (void) setupShinobi{
     CGFloat margin = 5.0;
     _chart = nil;
-    _chart = [[ShinobiChart alloc] initWithFrame:CGRectInset(_vueTop.frame, margin, margin)];
+    _chart = [[ShinobiChart alloc] initWithFrame:CGRectInset(self.view.bounds, margin, margin)];
     
     UIEdgeInsets titleInsets = UIEdgeInsetsMake(10.0, 0.0, 0.0, 0.0);
     _chart.canvasInset = titleInsets;
@@ -98,7 +100,7 @@
     
     xAxis.style.lineWidth = @0;
     yAxis.style.lineWidth = @0;
-    [_vueTop addSubview:_chart];
+    [self.view addSubview:_chart];
     
     _chart.datasource = self;
 }
@@ -111,9 +113,9 @@
     
     SChartLineSeries *lineSeries = [[SChartLineSeries alloc] init];
     /*
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    */
+     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+     dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+     */
     
     //lineSeries.title = [dateFormatter stringFromDate: [_labelPoints objectAtIndex:index]];;
     lineSeries.title = [_labelPoints objectAtIndex:index];
@@ -133,7 +135,7 @@
     SChartDataPoint *datapoint = [[SChartDataPoint alloc] init];
     
     // both functions share the same x-values
-    datapoint.xValue = [_dataPoints objectAtIndex:dataIndex];//[NSNumber numberWithInt:i];
+    datapoint.xValue = [NSNumber numberWithInt:i];
     i++;
     
     // compute the y-value for each series

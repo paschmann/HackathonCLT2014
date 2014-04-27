@@ -1,5 +1,5 @@
 //
-//  chart.h
+//  pie.h
 //  Hack2014
 //
 //  Created by Paul Aschmann on 4/26/14.
@@ -11,8 +11,7 @@
 #import "FMResultSet.h"
 #import "FMDatabase.h"
 
-
-@interface chart : UIViewController <SChartDatasource>{
+@interface pie : UIViewController <SChartDatasource>{
     ShinobiChart* _chart;
     FMDatabase *db;
     int i;

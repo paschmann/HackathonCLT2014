@@ -12,17 +12,8 @@
 
 }
 
-+(void) showAlert:(NSString *) title message:(NSString *) msg;
-+(NSDate*) getDateFromJSON:(NSString *)dateString;
-
-+(NSString *) getWebServiceDBInfo: (NSString *) host: (NSString *) version;
-+(NSString *) getWebService: (NSString *) host: (NSString *) version;
-+(NSString *) getWebServiceCSRF: (NSString *) host: (NSString *) version;
-+(NSString *) encode:(NSData *)plainText;
 +(void) createAndCheckDatabase;
 +(NSString *) getDBPath;
-
-+(NSString*) getDateFromDate:(NSString *)dateString;
 
 @property(retain) NSString *strDBPath;
 

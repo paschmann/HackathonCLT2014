@@ -12,8 +12,10 @@
 #import "FMDatabase.h"
 #import "Utility.h"
 #import "prod.h"
+#import <CoreLocation/CoreLocation.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 
-@interface ViewController : UIViewController{
+@interface ViewController : UIViewController <CLLocationManagerDelegate>{
     FMDatabase *db;
     prod *prd;
     __weak IBOutlet UIScrollView *scrSuggest;
@@ -30,11 +32,16 @@
     prod *prd6;
 }
 
+@property (strong, nonatomic) CLBeaconRegion *beaconRegion;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+
+
 - (IBAction)cmdDownloadSally:(id)sender;
 
 - (IBAction)cmdDownloadUserDetails:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *lblHHID;
 @property (weak, nonatomic) IBOutlet UILabel *lblLastVisit;
+@property (weak, nonatomic) IBOutlet UILabel *lblMostPurchased;
 
 @property (nonatomic, retain) NSArray *responseArray;
 @property (weak, nonatomic) IBOutlet UIView *vueOverlay;

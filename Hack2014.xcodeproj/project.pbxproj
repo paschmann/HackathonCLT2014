@@ -10,6 +10,9 @@
 		E44B766E190BECDA0096FEB5 /* ShinobiCharts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44B766D190BECDA0096FEB5 /* ShinobiCharts.framework */; };
 		E44B7670190BF02E0096FEB5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44B766F190BF02E0096FEB5 /* QuartzCore.framework */; };
 		E44B7672190BF0510096FEB5 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E44B7671190BF0510096FEB5 /* libc++.dylib */; };
+		E44B7675190BF7A70096FEB5 /* pie.m in Sources */ = {isa = PBXBuildFile; fileRef = E44B7674190BF7A70096FEB5 /* pie.m */; };
+		E44B7677190C07B70096FEB5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44B7676190C07B70096FEB5 /* CoreLocation.framework */; };
+		E44B7679190C07C10096FEB5 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44B7678190C07C10096FEB5 /* CoreBluetooth.framework */; };
 		E4C044A2190BADEA0047966F /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C04490190BADEA0047966F /* AFHTTPRequestOperation.m */; };
 		E4C044A3190BADEA0047966F /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C04492190BADEA0047966F /* AFHTTPRequestOperationManager.m */; };
 		E4C044A4190BADEA0047966F /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C04494190BADEA0047966F /* AFHTTPSessionManager.m */; };
@@ -67,6 +70,10 @@
 		E44B766D190BECDA0096FEB5 /* ShinobiCharts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ShinobiCharts.framework; path = Library/Frameworks/ShinobiCharts.framework; sourceTree = DEVELOPER_DIR; };
 		E44B766F190BF02E0096FEB5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E44B7671190BF0510096FEB5 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		E44B7673190BF7A70096FEB5 /* pie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pie.h; sourceTree = "<group>"; };
+		E44B7674190BF7A70096FEB5 /* pie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pie.m; sourceTree = "<group>"; };
+		E44B7676190C07B70096FEB5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E44B7678190C07C10096FEB5 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		E4C0448F190BADEA0047966F /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		E4C04490190BADEA0047966F /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		E4C04491190BADEA0047966F /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -139,6 +146,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E44B7679190C07C10096FEB5 /* CoreBluetooth.framework in Frameworks */,
+				E44B7677190C07B70096FEB5 /* CoreLocation.framework in Frameworks */,
 				E44B7672190BF0510096FEB5 /* libc++.dylib in Frameworks */,
 				E44B7670190BF02E0096FEB5 /* QuartzCore.framework in Frameworks */,
 				E44B766E190BECDA0096FEB5 /* ShinobiCharts.framework in Frameworks */,
@@ -162,6 +171,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E4770ACA190D64B40078D945 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				E4C044C0190BB30A0047966F /* Utility.h */,
+				E4C044C1190BB30A0047966F /* Utility.m */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		E4C0448E190BADEA0047966F /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +254,8 @@
 		E4C09700190B8EEF004CA8AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E44B7678190C07C10096FEB5 /* CoreBluetooth.framework */,
+				E44B7676190C07B70096FEB5 /* CoreLocation.framework */,
 				E44B7671190BF0510096FEB5 /* libc++.dylib */,
 				E44B766F190BF02E0096FEB5 /* QuartzCore.framework */,
 				E44B766D190BECDA0096FEB5 /* ShinobiCharts.framework */,
@@ -251,8 +271,7 @@
 		E4C09707190B8EEF004CA8AB /* Hack2014 */ = {
 			isa = PBXGroup;
 			children = (
-				E4C044C0190BB30A0047966F /* Utility.h */,
-				E4C044C1190BB30A0047966F /* Utility.m */,
+				E4770ACA190D64B40078D945 /* Utility */,
 				E4C044AB190BB26C0047966F /* FMDB */,
 				E4C0448E190BADEA0047966F /* AFNetworking */,
 				E4C0973D190BA8E7004CA8AB /* Images */,
@@ -266,6 +285,8 @@
 				E4C044C6190BBA610047966F /* prod.m */,
 				E4C044D4190BE7D70047966F /* chart.h */,
 				E4C044D5190BE7D70047966F /* chart.m */,
+				E44B7673190BF7A70096FEB5 /* pie.h */,
+				E44B7674190BF7A70096FEB5 /* pie.m */,
 				E4C0971C190B8EEF004CA8AB /* Images.xcassets */,
 				E4C09708190B8EEF004CA8AB /* Supporting Files */,
 			);
@@ -422,6 +443,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E44B7675190BF7A70096FEB5 /* pie.m in Sources */,
 				E4C044A2190BADEA0047966F /* AFHTTPRequestOperation.m in Sources */,
 				E4C0971B190B8EEF004CA8AB /* ViewController.m in Sources */,
 				E4C044B8190BB26C0047966F /* FMDatabase.m in Sources */,
